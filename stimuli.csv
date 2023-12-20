@@ -1,0 +1,115 @@
+﻿Group,Set,Condition,Sentence,word_order,interpretation,exi_type
+1,1,uni-exi_surf,학교에서 모든 학생이 어떤 선생님을 비판했다. 그 선생님들이 시험지를 유출했기 때문이다.,uni-exi,surface,etten
+2,1,uni-exi_inv,학교에서 모든 학생이 어떤 선생님을 비판했다. 그 선생님이 시험지를 유출했기 때문이다.,uni-exi,inverse,etten
+3,1,exi-uni_surf,학교에서 어떤 학생이 모든 선생님을 비판했다. 그 학생은 평소 예의가 없기로 유명했다.,exi-uni,surface,etten
+4,1,exi-uni_inv,학교에서 어떤 학생이 모든 선생님을 비판했다. 그 학생들은 평소 예의가 없기로 유명했다.,exi-uni,inverse,etten
+2,2,uni-exi_surf,식당에서 모든 손님이 어떤 요리사를 칭찬했다. 그 요리사들의 솜씨가 훌륭했기 때문이다.,uni-exi,surface,etten
+3,2,uni-exi_inv,식당에서 모든 손님이 어떤 요리사를 칭찬했다. 그 요리사의 솜씨가 훌륭했기 때문이다.,uni-exi,inverse,etten
+4,2,exi-uni_surf,식당에서 어떤 손님이 모든 요리사를 칭찬했다. 그 손님은 많은 팁을 남기고 갔다. ,exi-uni,surface,etten
+1,2,exi-uni_inv,식당에서 어떤 손님이 모든 요리사를 칭찬했다. 그 손님들은 많은 팁을 남기고 갔다.,exi-uni,inverse,etten
+3,3,uni-exi_surf,병원에서 모든 간호사가 어떤 환자를 돌보았다. 그 환자들은 중환자실에 입원해 있었다.,uni-exi,surface,etten
+4,3,uni-exi_inv,병원에서 모든 간호사가 어떤 환자를 돌보았다. 그 환자는 중환자실에 입원해 있었다. ,uni-exi,inverse,etten
+1,3,exi-uni_surf,병원에서 어떤 간호사가 모든 환자를 돌보았다. 그 간호사가 당직이었기 때문이다.,exi-uni,surface,etten
+2,3,exi-uni_inv,병원에서 어떤 간호사가 모든 환자를 돌보았다. 그 간호사들이 당직이었기 때문이다.,exi-uni,inverse,etten
+4,4,uni-exi_surf,화실에서 모든 화가가 어떤 모델을 그렸다. 그 모델들은 한 시간동안 같은 자세로 서 있었다.,uni-exi,surface,etten
+1,4,uni-exi_inv,화실에서 모든 화가가 어떤 모델을 그렸다. 그 모델은 한 시간동안 같은 자세로 서 있었다.,uni-exi,inverse,etten
+2,4,exi-uni_surf,화실에서 어떤 화가가 모든 모델을 그렸다. 그 화가는 인물 스케치를 특히 좋아했다.,exi-uni,surface,etten
+3,4,exi-uni_inv,화실에서 어떤 화가가 모든 고양이를 그렸다. 그 화가들은 인물 스케치를 특히 좋아했다.,exi-uni,inverse,etten
+1,5,uni-exi_surf,서울역에서 모든 경찰관이 어떤 도둑을 잡았다.  그 도둑들은 구치소에 수감되었다.,uni-exi,surface,etten
+2,5,uni-exi_inv,서울역에서 모든 경찰관이 어떤 도둑을 잡았다. 그 도둑은 구치소에 수감되었다. ,uni-exi,inverse,etten
+3,5,exi-uni_surf,서울역에서 어떤 경찰관이 모든 도둑을 잡았다. 그 경찰관은 다음 달 인사고과를 잘 받았다.,exi-uni,surface,etten
+4,5,exi-uni_inv,서울역에서 어떤 경찰관이 모든 도둑을 잡았다. 그 경찰관들은 다음 달 인사고과를 잘 받았다.,exi-uni,inverse,etten
+2,6,uni-exi_surf,학회에서 모든 언어학자가 어떤 이론을 주장했다. 그 이론들은 설득력이 있었다.,uni-exi,surface,etten
+3,6,uni-exi_inv,학회에서 모든 언어학자가 어떤 이론을 주장했다. 그 이론은 설득력이 있었다.,uni-exi,inverse,etten
+4,6,exi-uni_surf,학회에서 어떤 언어학자가 모든 이론을 주장했다. 그 언어학자는 다른 사람들의 피드백에 귀를 귀울였다.,exi-uni,surface,etten
+1,6,exi-uni_inv,학회에서 어떤 언어학자가 모든 이론을 주장했다. 그 언어학자들은 다른 사람들의 피드백에 귀를 귀울였다.,exi-uni,inverse,etten
+3,7,uni-exi_surf,뉴욕에서 모든 사진사가 어떤 관광객을 찍었다. 그 관광객들은 패션 감각이 좋았다. ,uni-exi,surface,etten
+4,7,uni-exi_inv,뉴욕에서 모든 사진사가 어떤 관광객을 찍었다. 그 관광객은 패션 감각이 좋았다. ,uni-exi,inverse,etten
+1,7,exi-uni_surf,뉴욕에서 어떤 사진사가 모든 관광객을 찍었다. 그 사진사는 스냅 사진을 잘 찍는 것으로 알려져있었다.,exi-uni,surface,etten
+2,7,exi-uni_inv,뉴욕에서 어떤 사진사가 모든 관광객을 찍었다. 그 사진사들은 스냅 사진을 잘 찍는 것으로 알려져있었다.,exi-uni,inverse,etten
+4,8,uni-exi_surf,키즈카페에서 모든 부모가 어떤 아이를 때렸다. 그 아이들은 울음을 터뜨렸다.,uni-exi,surface,etten
+1,8,uni-exi_inv,키즈카페에서 모든 부모가 어떤 아이를 때렸다. 그 아이는 울음을 터뜨렸다.,uni-exi,inverse,etten
+2,8,exi-uni_surf,키즈카페에서 어떤 부모가 모든 아이를 때렸다.  그 부모는 직원에 의해 곧바로 제지 당했다.,exi-uni,surface,etten
+3,8,exi-uni_inv,키즈카페에서 어떤 부모가 모든 아이를 때렸다. 그 부모들은 직원에 의해 곧바로 제지 당했다.,exi-uni,inverse,etten
+1,9,uni-exi_surf,미용실에서 모든 미용사가 어떤 견습생을 꾸짖었다. 그 견습생들이 큰 실수를 했기 때문이다.,uni-exi,surface,etten
+2,9,uni-exi_inv,미용실에서 모든 미용사가 어떤 견습생을 꾸짖었다. 그 견습생이 큰 실수를 했기 때문이다.,uni-exi,inverse,etten
+3,9,exi-uni_surf,미용실에서 어떤 미용사가 모든 견습생을 꾸짖었다. 그 미용사는 쉽사리 분을 삭이지 못했다.,exi-uni,surface,etten
+4,9,exi-uni_inv,미용실에서 어떤 미용사가 모든 견습생을 꾸짖었다. 그 미용사들은 쉽사리 분을 삭이지 못했다.,exi-uni,inverse,etten
+2,10,uni-exi_surf,연습실에서 모든 발레리나가 어떤 발레리노를 놀렸다. 그 발레리노들은 민망함을 감추지 못했다.,uni-exi,surface,etten
+3,10,uni-exi_inv,연습실에서 모든 발레리나가 어떤 발레리노를 놀렸다. 그 발레리노는 민망함을 감추지 못했다.,uni-exi,inverse,etten
+4,10,exi-uni_surf,연습실에서 어떤 발레리나가 모든 발레리노를 놀렸다. 그 발레리나는 짖궃은 장난을 좋아한다.,exi-uni,surface,etten
+1,10,exi-uni_inv,연습실에서 어떤 발레리나가 모든 발레리노를 놀렸다. 그 발레리나들은 짖궃은 장난을 좋아한다.,exi-uni,inverse,etten
+3,11,uni-exi_surf,옷가게에서 모든 직원이 어떤 손님을 나무랐다. 그 손님들이 손에 음료를 들고 있었기 때문이다.,uni-exi,surface,etten
+4,11,uni-exi_inv,옷가게에서 모든 직원이 어떤 손님을 나무랐다. 그 손님이 손에 음료를 들고 있었기 때문이다.,uni-exi,inverse,etten
+1,11,exi-uni_surf,옷가게에서 어떤 직원이 모든 손님을 나무랐다. 그 직원은 다음 날 해고되었다.,exi-uni,surface,etten
+2,11,exi-uni_inv,옷가게에서 어떤 직원이 모든 손님을 나무랐다. 그 직원들은 다음 날 해고되었다.,exi-uni,inverse,etten
+4,12,uni-exi_surf,요양원에서 모든 간병인이 어떤 노인을 보살폈다.  그 노인들은 거동이 불편해 휠체어를 사용한다.,uni-exi,surface,etten
+1,12,uni-exi_inv,요양원에서 모든 간병인이 어떤 노인을 보살폈다. 그 노인은 거동이 불편해 휠체어를 사용한다.,uni-exi,inverse,etten
+2,12,exi-uni_surf,요양원에서 어떤 간병인이 모든 노인을 보살폈다. 그 간병인은 십년 째 요양원에서 일한 베테랑이다.,exi-uni,surface,etten
+3,12,exi-uni_inv,요양원에서 어떤 간병인이 모든 노인을 보살폈다. 그 간병인들은 십년 째 요양원에서 일한 베테랑이다.,exi-uni,inverse,etten
+1,13,uni-exi_surf,평원에서 모든 미어캣이 누군가를 살펴보았다. 그 사람들은 다큐멘터리를 찍으러 온 감독들이었다.,uni-exi,surface,nwukwunka
+2,13,uni-exi_inv,평원에서 모든 미어캣이 누군가를 살펴보았다. 그 사람은 다큐멘터리를 찍으러 온 감독이었다.,uni-exi,inverse,nwukwunka
+3,13,exi-uni_surf,평원에서 누군가가 모든 미어캣을 살펴보았다. 그 사람은 다큐멘터리를 찍으러 온 감독이었다.,exi-uni,surface,nwukwunka
+4,13,exi-uni_inv,평원에서 누군가가 모든 미어캣을 살펴보았다. 그 사람들은 다큐멘터리를 찍으러 온 감독들이었다.,exi-uni,inverse,nwukwunka
+2,14,uni-exi_surf,공원에서 모든 다람쥐가 누군가를 쫓아갔다. 그 사람들이 손에 도토리를 들고 있었기 때문이다.,uni-exi,surface,nwukwunka
+3,14,uni-exi_inv,공원에서 모든 다람쥐가 누군가를 쫓아갔다. 그 사람이 손에 도토리를 들고 있었기 때문이다.,uni-exi,inverse,nwukwunka
+4,14,exi-uni_surf,공원에서 누군가가 모든 다람쥐를 쫓아갔다. 그 사람은 다람쥐의 속도를 따라잡지 못했다.,exi-uni,surface,nwukwunka
+1,14,exi-uni_inv,공원에서 누군가가 모든 다람쥐를 쫓아갔다. 그 사람들은 다람쥐의 속도를 따라잡지 못했다.,exi-uni,inverse,nwukwunka
+3,15,uni-exi_surf,길거리에서 모든 고양이가 누군가를 따라갔다. 그 사람들이 손에 츄르를 들고 있었기 때문이다.,uni-exi,surface,nwukwunka
+4,15,uni-exi_inv,길거리에서 모든 고양이가 누군가를 따라갔다. 그 사람이 손에 츄르를 들고 있었기 때문이다.,uni-exi,inverse,nwukwunka
+1,15,exi-uni_surf,길거리에서 누군가가 모든 고양이를 따라갔다. 인적이 드문 곳에 도착하자 그 사람은  먹이를 놓고 사라졌다.,exi-uni,surface,nwukwunka
+2,15,exi-uni_inv,길거리에서 누군가가 모든 고양이를 따라갔다. 인적이 드문 곳에 도착하자 그 사람들은  먹이를 놓고 사라졌다.,exi-uni,inverse,nwukwunka
+4,16,uni-exi_surf,서커스 공연 중 모든 사자가 누군가를 뛰어넘었다. 그 사람들은 숙련된 단원들이기 때문에 겁먹지 않았다.,uni-exi,surface,nwukwunka
+1,16,uni-exi_inv,서커스 공연 중 모든 사자가 누군가를 뛰어넘었다. 그 사람은 숙련된 단원이기 때문에 겁먹지 않았다.,uni-exi,inverse,nwukwunka
+2,16,exi-uni_surf,서커스 공연 중 누군가가 모든 사자를 뛰어넘었다. 그 사람은 숙련된 단원이기 때문에 겁먹지 않았다.,exi-uni,surface,nwukwunka
+3,16,exi-uni_inv,서커스 공연 중 누군가가 모든 사자를 뛰어넘었다. 그 사람들은 숙련된 단원들이기 때문에 겁먹지 않았다.,exi-uni,inverse,nwukwunka
+1,17,uni-exi_surf,광장에서 모든 비둘기가 누군가를 맴돌았다. 그 사람들이 손에 뻥튀기를 한가득 가지고 있었기 때문이다.,uni-exi,surface,nwukwunka
+2,17,uni-exi_inv,광장에서 모든 비둘기가 누군가를 맴돌았다. 그 사람이 손에 뻥튀기를 한가득 가지고 있었기 때문이다.,uni-exi,inverse,nwukwunka
+3,17,exi-uni_surf,광장에서 누군가가 모든 비둘기를 맴돌았다. 그 사람은 새를 관찰하는 것이 취미이기 때문이다.,exi-uni,surface,nwukwunka
+4,17,exi-uni_inv,광장에서 누군가가 모든 비둘기를 맴돌았다. 그 사람들은 새를 관찰하는 것이 취미이기 때문이다.,exi-uni,inverse,nwukwunka
+2,18,uni-exi_surf,태국의 사원에서 모든 원숭이가 누군가를 껴안았다. 그 사람들은 추억을 남기기 위해 무서움을 참고 사진을 찍었다.,uni-exi,surface,nwukwunka
+3,18,uni-exi_inv,태국의 사원에서 모든 원숭이가 누군가를 껴안았다. 그 사람은 추억을 남기기 위해 무서움을 참고 사진을 찍었다.,uni-exi,inverse,nwukwunka
+4,18,exi-uni_surf,태국의 사원에서 누군가가 모든 원숭이를 껴안았다. 그 사람은 추억을 남기기 위해 무서움을 참고 사진을 찍었다.,exi-uni,surface,nwukwunka
+1,18,exi-uni_inv,태국의 사원에서 누군가가 모든 원숭이를 껴안았다. 그 사람들은 추억을 남기기 위해 무서움을 참고 사진을 찍었다.,exi-uni,inverse,nwukwunka
+3,19,uni-exi_surf,해안가에서 모든 상어가 누군가를 공격했다. 그 사람들은 다리에 상처가 나서 움직이지 못했다.,uni-exi,surface,nwukwunka
+4,19,uni-exi_inv,해안가에서 모든 상어가 누군가를 공격했다. 그 사람은 다리에 상처가 나서 움직이지 못했다.,uni-exi,inverse,nwukwunka
+1,19,exi-uni_surf,해안가에서 누군가가 모든 상어를 공격했다. 그 사람은 다행히도 많이 다치지 않았다.,exi-uni,surface,nwukwunka
+2,19,exi-uni_inv,해안가에서 모든 상어가 누군가를 공격했다. 그 사람들은 다행히도 많이 다치지 않았다.,exi-uni,inverse,nwukwunka
+4,20,uni-exi_surf,지리산에서 모든 멧돼지가 누군가를 추격했다. 그 사람들은 베테랑 밀렵꾼이었기 때문에 잡히지 않았다.,uni-exi,surface,nwukwunka
+1,20,uni-exi_inv,지리산에서 모든 멧돼지가 누군가를 추격했다. 그 사람은 베테랑 밀렵꾼이었기 때문에 잡히지 않았다.,uni-exi,inverse,nwukwunka
+2,20,exi-uni_surf,지리산에서 누군가가 모든 멧돼지를 추격했다. 그 사람은 멧돼지에 의해 농작물 피해를 많이 입었기 때문이다.,exi-uni,surface,nwukwunka
+3,20,exi-uni_inv,지리산에서 누군가가 모든 멧돼지를 추격했다. 그 사람들은 멧돼지에 의해 농작물 피해를 많이 입었기 때문이다.,exi-uni,inverse,nwukwunka
+1,21,uni-exi_surf,사육장에서 모든 물개가 누군가를 기다렸다. 그 사람들은 얼린 정어리를 먹이로 가지고 왔다.,uni-exi,surface,nwukwunka
+2,21,uni-exi_inv,사육장에서 모든 물개가 누군가를 기다렸다. 그 사람은 얼린 정어리를 먹이로 가지고 왔다.,uni-exi,inverse,nwukwunka
+3,21,exi-uni_surf,사육장에서 누군가가 모든 물개를 기다렸다. 그 사람은 얼린 정어리를 먹이로 가지고 왔다.,exi-uni,surface,nwukwunka
+4,21,exi-uni_inv,사육장에서 누군가가 모든 물개를 기다렸다. 그 사람들은 얼린 정어리를 먹이로 가지고 왔다.,exi-uni,inverse,nwukwunka
+2,22,uni-exi_surf,오밤중에 모든 강아지가 누군가를 내쫓았다. 그 사람들은 도둑질을 하려다 겁을 먹고 도망갔다.,uni-exi,surface,nwukwunka
+3,22,uni-exi_inv,오밤중에 모든 강아지가 누군가를 내쫓았다. 그 사람은 도둑질을 하려다 겁을 먹고 도망갔다.,uni-exi,inverse,nwukwunka
+4,22,exi-uni_surf,오밤중에 누군가가 모든 강아지를 내쫓았다. 그 사람은 이미 동물 학대 전과를 가지고 있었다.,exi-uni,surface,nwukwunka
+1,22,exi-uni_inv,오밤중에 누군가가 모든 강아지를 내쫓았다. 그 사람들은 이미 동물 학대 전과를 가지고 있었다.,exi-uni,inverse,nwukwunka
+3,23,uni-exi_surf,바닷가에서 모든 돌고래가 누군가를 구했다. 그 사람들은 하마터면 익사할 뻔했다.,uni-exi,surface,nwukwunka
+4,23,uni-exi_inv,바닷가에서 모든 돌고래가 누군가를 구했다. 그 사람은 하마터면 익사할 뻔했다.,uni-exi,inverse,nwukwunka
+1,23,exi-uni_surf,바닷가에서 누군가가 모든 돌고래를 구했다. 그 사람은 다친 해양 동물을 치료하는 의사이다.,exi-uni,surface,nwukwunka
+2,23,exi-uni_inv,바닷가에서 누군가가 모든 돌고래를 구했다. 그 사람들은 다친 해양 동물을 치료하는 의사이다.,exi-uni,inverse,nwukwunka
+4,24,uni-exi_surf,숲속에서 모든 뱀이 누군가를 위협했다. 그 사람들은 뱀으로 술을 담그기 위해 뱀 사냥을 하고 있었다.,uni-exi,surface,nwukwunka
+1,24,uni-exi_inv,숲속에서 모든 뱀이 누군가를 위협했다. 그 사람은 뱀으로 술을 담그기 위해 뱀 사냥을 하고 있었다.,uni-exi,inverse,nwukwunka
+2,24,exi-uni_surf,숲속에서 누군가가 모든 뱀을 위협했다. 그 사람은 뱀으로 술을 담그기 위해 뱀 사냥을 하고 있었다.,exi-uni,surface,nwukwunka
+3,24,exi-uni_inv,숲속에서 누군가가 모든 뱀을 위협했다. 그 사람들은 뱀으로 술을 담그기 위해 뱀 사냥을 하고 있었다.,exi-uni,inverse,nwukwunka
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,

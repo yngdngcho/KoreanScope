@@ -1,0 +1,370 @@
+---
+title: "Acceptability results"
+output: html_document
+date: "2023-12-08"
+---
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(tidyr)
+```
+
+```{r}
+read.pcibex <- function(filepath, auto.colnames=TRUE, fun.col=function(col,cols){cols[cols==col]<-paste(col,"Ibex",sep=".");return(cols)}) {
+  n.cols <- max(count.fields(filepath,sep=",",quote=NULL),na.rm=TRUE)
+  if (auto.colnames){
+    cols <- c()
+    con <- file(filepath, "r")
+    while ( TRUE ) {
+      line <- readLines(con, n = 1, warn=FALSE)
+      if ( length(line) == 0) {
+        break
+      }
+      m <- regmatches(line,regexec("^# (\\d+)\\. (.+)\\.$",line))[[1]]
+      if (length(m) == 3) {
+        index <- as.numeric(m[2])
+        value <- m[3]
+        if (is.function(fun.col)){
+         cols <- fun.col(value,cols)
+        }
+        cols[index] <- value
+        if (index == n.cols){
+          break
+        }
+      }
+    }
+    close(con)
+    return(read.csv(filepath, comment.char="#", header=FALSE, col.names=cols))
+  }
+  else{
+    return(read.csv(filepath, comment.char="#", header=FALSE, col.names=seq(1:n.cols)))
+  }
+}
+```
+
+```{r}
+#Import the data
+df_scope <- read.pcibex("results_15subj.csv")
+
+df_scope <- df_scope %>%
+  select(Label,Value,target_condition,target_set,target_word_order, target_interpretation, target_existential, Results.reception.time)
+
+# Change the name of Results.reception.time into id
+names(df_scope)[names(df_scope) == "Results.reception.time"] <- "id"
+
+#Get rid of unnecessary data
+df_scope <- filter(df_scope, Label != "consent")
+df_scope <- filter(df_scope, Label != "instructions")
+df_scope <- filter(df_scope, Label != "instructions1")
+df_scope <- filter(df_scope, Label != "instructions2")
+df_scope <- filter(df_scope, Label != "start_experiment")
+
+#keep data for for participants information
+df_with_participants <- filter(df_scope, Label != "exercise") 
+
+#delete participants information and keep filler data
+df_scope_filler <- filter(df_with_participants, Label != "participants") 
+
+#delete filler 
+df_scope <- filter(df_scope_filler, Label != "filler")
+
+df_scope <- filter(df_scope, id != "1702037246")  #delete error data
+
+#Get the acceptability answers
+df_scope <- filter(df_scope, Value %in% c(1, 2, 3, 4, 5, 6, 7))
+
+#Change variable type
+df_scope$Value <- as.numeric(as.character(df_scope$Value))
+
+#Change the condition order of the target_condition
+df_scope$target_condition <- factor(df_scope$target_condition, levels=c("uni-exi_surf", "uni-exi_inv","exi-uni_surf","exi-uni_inv"))
+
+#Summarize the data
+df_summary <- df_scope %>%
+  group_by(target_condition) %>%
+  summarize(mean = mean(Value), sd = sd(Value),
+            upper = mean + 1.96 *sd/sqrt(length(Value)),
+            lower = mean - 1.96 * sd/sqrt(length(Value)) )
+
+print(df_summary)
+
+p <- ggplot(df_summary, aes(x=target_condition, y = mean, fill=target_condition)) +
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge()) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), 
+                colour="black",width = 0.1, linewidth = 0.4, position = position_dodge(0.9))+
+  theme_bw()+
+  scale_x_discrete(limits=c("uni-exi_surf","uni-exi_inv","exi-uni_surf","exi-uni_inv"),
+                   labels=c("uni-exi-surf","uni-exi-inv","exi-uni-surf","exi-uni-inv")) +
+  scale_fill_manual(values=c("yellowgreen","yellow2","#FC4E07","steelblue"),
+                    labels = c("uni-exi-surf","uni-exi-inv","exi-uni-surf","exi-uni-inv"))+ 
+  scale_y_continuous(limits=c(0,7),breaks=seq(0,7,1),expand=c(0,0))+
+  labs(title = "Korean scope (non-)rigidity", x="Condition",y="Mean Acceptability Ratings", 
+       fill = "Condition")+
+  theme_minimal()
+
+print(p)
+```
+
+
+```{r}
+#Normalize the data
+normalized_df_scope <- df_scope %>%
+  group_by(id) %>%
+  mutate(mean_Value = mean(Value), sd_Value = sd(Value),
+         normalized_Value = (Value - mean_Value) / sd_Value) %>%
+  ungroup () %>%
+  select(-mean_Value, -sd_Value)
+  
+normalized_df_summary <- normalized_df_scope %>%
+  group_by(target_condition) %>%
+  summarize(mean = mean(normalized_Value), sd = sd(normalized_Value),
+            upper = mean + 1.96 *sd/sqrt(length(normalized_Value)),
+            lower = mean - 1.96 * sd/sqrt(length(normalized_Value)) )
+
+print(normalized_df_summary)
+
+p <- ggplot(normalized_df_summary, aes(x=target_condition, y = mean, fill=target_condition)) +
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge()) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), 
+                colour="black",width = 0.1, linewidth = 0.4, position = position_dodge(0.9))+
+  theme_bw()+
+  scale_x_discrete(limits=c("uni-exi_surf","uni-exi_inv","exi-uni_surf","exi-uni_inv"),
+                   labels=c("uni-exi-surf","uni-exi-inv","exi-uni-surf","exi-uni-inv")) +
+  scale_fill_manual(values=c("yellowgreen","yellow2","#FC4E07","steelblue"),
+                    labels = c("uni-exi-surf","uni-exi-inv","exi-uni-surf","exi-uni-inv"))+ 
+  scale_y_continuous(limits=c(-2,2),breaks=seq(-2,2,1),expand=c(0,0))+
+  labs(title = "Korean scope (non-)rigidity: Normalized data", x="Condition",y="Mean Acceptability Ratings", 
+       fill = "Condition")+
+  theme_minimal()
+
+print(p)
+```
+
+
+```{r}
+#Filter data to only include etten 'some'
+df_scope_etten <- filter(df_scope, target_existential == "etten")
+
+#Change the condition order of the target_condition
+df_scope_etten$target_condition <- factor(df_scope_etten$target_condition, levels=c("uni-exi_surf", "uni-exi_inv","exi-uni_surf","exi-uni_inv"))
+
+#Summarize the data
+df_summary_etten <- df_scope_etten %>%
+  group_by(target_condition) %>%
+  summarize(mean = mean(Value), sd = sd(Value),
+            upper = mean + 1.96 *sd/sqrt(length(Value)),
+            lower = mean - 1.96 * sd/sqrt(length(Value)) )
+
+print(df_summary_etten)
+
+p <- ggplot(df_summary_etten, aes(x=target_condition, y = mean, fill=target_condition)) +
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge()) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), 
+                colour="black",width = 0.1, linewidth = 0.4, position = position_dodge(0.9))+
+  theme_bw()+
+  scale_x_discrete(limits=c("uni-exi_surf","uni-exi_inv","exi-uni_surf","exi-uni_inv"),
+                   labels=c("uni-exi-surf","uni-exi-inv","exi-uni-surf","exi-uni-inv")) +
+  scale_fill_manual(values=c("yellowgreen","yellow2","#FC4E07","steelblue"),
+                    labels = c("uni-exi-surf","uni-exi-inv","exi-uni-surf","exi-uni-inv"))+ 
+  scale_y_continuous(limits=c(0,7),breaks=seq(0,7,1),expand=c(0,0))+
+  labs(title = "Korean scope (non)rigidity", x="Condition",y="Mean Acceptability Ratings", 
+       fill = "Condition")+
+  theme_minimal()
+
+print(p)
+```
+
+```{r}
+#Filter data to only include nwukwunka 'someone'
+df_scope_nkk <- filter(df_scope, target_existential == "nwukwunka")
+
+#Change the condition order of the target_condition
+df_scope_nkk$target_condition <- factor(df_scope_nkk$target_condition, levels=c("uni-exi_surf", "uni-exi_inv","exi-uni_surf","exi-uni_inv"))
+
+#Summarize the data
+df_summary_nkk <- df_scope_nkk %>%
+  group_by(target_condition) %>%
+  summarize(mean = mean(Value), sd = sd(Value),
+            upper = mean + 1.96 *sd/sqrt(length(Value)),
+            lower = mean - 1.96 * sd/sqrt(length(Value)) )
+
+print(df_summary_nkk)
+
+p <- ggplot(df_summary_nkk, aes(x=target_condition, y = mean, fill=target_condition)) +
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge()) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), 
+                colour="black",width = 0.1, linewidth = 0.4, position = position_dodge(0.9))+
+  theme_bw()+
+  scale_x_discrete(limits=c("uni-exi_surf","uni-exi_inv","exi-uni_surf","exi-uni_inv"),
+                   labels=c("uni-exi-surf","uni-exi-inv","exi-uni-surf","exi-uni-inv")) +
+  scale_fill_manual(values=c("yellowgreen","yellow2","#FC4E07","steelblue"),
+                    labels = c("uni-exi-surf","uni-exi-inv","exi-uni-surf","exi-uni-inv"))+ 
+  scale_y_continuous(limits=c(0,7),breaks=seq(0,7,1),expand=c(0,0))+
+  labs(title = "Korean scope (non)rigidity", x="Condition",y="Mean Acceptability Ratings", 
+       fill = "Condition")+
+  theme_minimal()
+
+print(p)
+
+```
+
+
+```{r}
+#Filler summary
+df_scope_filler <- filter(df_scope_filler, Label == "filler")
+
+#Get the acceptability answers of fillers
+df_scope_filler <- filter(df_scope_filler, Value %in% c(1, 2, 3, 4, 5, 6, 7))
+
+#Change variable type
+df_scope_filler$Value <- as.numeric(as.character(df_scope_filler$Value))
+
+#Summarize the data
+df_summary_filler <- df_scope_filler %>%
+  group_by(target_condition) %>%
+  summarize(mean = mean(Value), sd = sd(Value),
+            upper = mean + 1.96 *sd/sqrt(length(Value)),
+            lower = mean - 1.96 * sd/sqrt(length(Value)) )
+
+print(df_summary_filler)
+
+p <- ggplot(df_summary_filler, aes(x=target_condition, y = mean, fill=target_condition)) +
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge()) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), 
+                colour="black",width = 0.1, linewidth = 0.4, position = position_dodge(0.9))+
+  theme_bw()+
+  scale_x_discrete(limits=c("y", "n"),
+                   labels=c("Felicitous", "Infelicitous")) +
+  scale_fill_manual(values=c("#FC4E07","steelblue"),
+                    labels = c("Felicitous", "Infelicitous"))+ 
+  scale_y_continuous(limits=c(0,7),breaks=seq(0,7,1),expand=c(0,0))+
+  labs(title = "Fillers", x="Condition",y="Mean Acceptability Ratings", 
+       fill = "Condition")+
+  theme_minimal()
+
+print(p)
+```
+
+```{r}
+#Inverse reading of universal-existential order
+df_scope_uni_exi_inv <- filter(df_scope, target_condition == "uni-exi_inv")
+
+#Summarize the data
+df_summary <- df_scope_uni_exi_inv %>%
+  group_by(target_existential) %>%
+  summarize(mean = mean(Value), sd = sd(Value),
+            upper = mean + 1.96 *sd/sqrt(length(Value)),
+            lower = mean - 1.96 * sd/sqrt(length(Value)) )
+
+df_summary
+
+p <- ggplot(df_summary, aes(x=target_existential, y = mean, fill=target_existential)) +
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge()) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), 
+                colour="black",width = 0.1, linewidth = 0.4, position = position_dodge(0.9))+
+  theme_bw()+
+  scale_x_discrete(limits=c("etten", "nwukwunka"),
+                   labels=c("etten NP 'some NP'","nwukwunka 'someone'")) +
+  scale_fill_manual(values=c("yellowgreen","yellow2","#FC4E07","steelblue"),
+                    labels = c("etten","nwukwunka"))+ 
+  scale_y_continuous(limits=c(0,7),breaks=seq(0,7,1),expand=c(0,0))+
+  labs(title = "By existential type", x="Condition",y="Mean Acceptability Ratings", 
+       fill = "Condition")+
+  theme_minimal()
+
+print(p)
+```
+
+```{r}
+#Surface reading of existential-universal order
+df_scope_exi_uni_surf <- filter(df_scope, target_condition == "exi-uni_surf")
+
+#Summarize the data
+df_summary <- df_scope_exi_uni_surf %>%
+  group_by(target_existential) %>%
+  summarize(mean = mean(Value), sd = sd(Value),
+            upper = mean + 1.96 *sd/sqrt(length(Value)),
+            lower = mean - 1.96 * sd/sqrt(length(Value)) )
+
+df_summary
+
+p <- ggplot(df_summary, aes(x=target_existential, y = mean, fill=target_existential)) +
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge()) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), 
+                colour="black",width = 0.1, linewidth = 0.4, position = position_dodge(0.9))+
+  theme_bw()+
+  scale_x_discrete(limits=c("etten", "nwukwunka"),
+                   labels=c("etten NP 'some NP'","nwukwunka 'someone'")) +
+  scale_fill_manual(values=c("yellowgreen","yellow2","#FC4E07","steelblue"),
+                    labels = c("etten","nwukwunka"))+ 
+  scale_y_continuous(limits=c(0,7),breaks=seq(0,7,1),expand=c(0,0))+
+  labs(title = "By existential type", x="Condition",y="Mean Acceptability Ratings", 
+       fill = "Condition")+
+  theme_minimal()
+
+print(p)
+```
+
+```{r}
+#Calculate the mean age
+df_age <- filter(df_with_participants, Label == "participants")
+
+#Get only numeric values under Participants
+df_age <- df_age[grepl("^\\d+$", df_age$Value), ] 
+
+# Convert to numerics
+df_age$Value <- as.numeric(as.character(df_age$Value))
+mean.age <- mean(df_age$Value)
+mean.age
+```
+
+
+```{r}
+# By condition
+library(lme4)
+library(lmerTest)
+
+# 1. To see if target_word_order and target_interpretation interact
+factor_interaction_model <- lmerTest::lmer(Value ~ target_word_order*target_interpretation + (1+target_word_order*target_interpretation|id) + (1+target_word_order*target_interpretation|target_set), data = df_scope, control=lmerControl(optimizer="bobyqa",optCtrl=list(maxfun=2e5)))
+
+summary(factor_interaction_model)
+```
+
+```{r}
+# 2. To see if Value by target_existential (etten vs. nwukwunka) exhibit significant difference
+df_scope_exi_uni_surf$target_existential <- factor(df_scope_exi_uni_surf$target_existential, levels=c("etten", "nwukwunka"))
+
+existential_type_model_surf <- lmerTest::lmer(Value ~ target_existential + (1+target_existential|id) + (1+target_existential|target_set), data = df_scope_exi_uni_surf, control=lmerControl(optimizer="bobyqa",optCtrl=list(maxfun=2e5)))
+
+summary(existential_type_model_surf)
+
+df_scope_uni_exi_inv$target_existential <- factor(df_scope_uni_exi_inv$target_existential, levels=c("etten", "nwukwunka"))
+
+existential_type_model_inv <- lmerTest::lmer(Value ~ target_existential + (1+target_existential|id) + (1+target_existential|target_set), data = df_scope_uni_exi_inv, control=lmerControl(optimizer="bobyqa",optCtrl=list(maxfun=2e5)))
+
+summary(existential_type_model_inv)
+```
+
+
+```{r}
+# Create a hypothetical dataset
+data <- data.frame(
+  Condition = c("uni-exi-surf", "uni-exi-inv", "exi-uni-surf", "exi-uni-inv"),
+  Value = c(5, 5, 5, 1)
+)
+
+#Change the condition order 
+data$Condition <- factor(data$Condition, levels=c("uni-exi-surf", "uni-exi-inv","exi-uni-surf","exi-uni-inv"))
+
+# Create a bar plot
+ggplot(data, aes(x = Condition, y = Value, fill = Condition)) +
+  geom_bar(stat = "identity", width = 0.5, position = position_dodge()) +
+  scale_fill_manual(values=c("yellowgreen","yellow2","#FC4E07","steelblue"))+ 
+  scale_y_continuous(limits=c(0,7),breaks=seq(0,7,1),expand=c(0,0))+
+  labs(title = "Predictions",
+       x = "Conditions",
+       y = "Mean Acceptability Ratings") +
+  theme_minimal()
+```
